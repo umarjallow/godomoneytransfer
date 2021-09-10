@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "MontSerrat";
+    src: url("/fonts/montserrat-v15-latin/montserrat-v15-latin-regular.ttf");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "MontSerrat";
+    src: url("/fonts/montserrat-v15-latin/montserrat-v15-latin-regular.ttf");
+    font-style: medium;
+    font-weight: 500;
+    font-display: swap;
+  }
+  
+
+@layer base {
+    body{
+        @apply bg-[#FFFFFF]
+    }
+}
+
+

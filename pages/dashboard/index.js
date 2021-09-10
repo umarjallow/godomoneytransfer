@@ -6,7 +6,7 @@ import {
     TrendingDownIcon,
     TrendingUpIcon,
     TableIcon,
-    LightBulbIcon
+    LightBulbIcon, UserIcon
 } from '@heroicons/react/outline'
 import {
     HomeIcon,
@@ -14,18 +14,26 @@ import {
     CogIcon,
     AcademicCapIcon,
     ShoppingCartIcon,
-    DocumentTextIcon, BellIcon
+    DocumentTextIcon, BellIcon, SearchIcon, ArrowRightIcon
 } from '@heroicons/react/solid'
 
 import {TitleCard} from "../../components/section-title";
 import LineChart from "../../components/Dashboard/Charts/Lines";
 import Dotnut from "../../components/Dashboard/Charts/Doughnut";
 import Transactions from "../../components/Dashboard/Transactions";
+import {Field} from "../../components/Elements/Field";
+import {useForm} from "react-hook-form";
+import Button from "../../components/Elements/Button";
 export default function Dashboard() {
 
-  
 
-  return (
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        console.log(data)
+    };
+
+
+    return (
     <>
       <Head>
         <title>Create Next App</title>
@@ -34,9 +42,10 @@ export default function Dashboard() {
       </Head>
         <div className="w-full">
             <div className="flex h-screen">
-                <div className="lg:w-2/3 my-5 px-2 py-2 mx-auto">
+                {/*Middle Section*/}
+                <div className="lg:w-2/3 my-5 px-2 py-2 mx-auto overflow-y-auto">
                     <Header />
-
+                       {/*Rapid Access*/}
                     <div className="my-10">
                         <TitleCard title="Mes accés rapides" />
                         <div className="w-full flex flex-row justify-between">
@@ -74,7 +83,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-
+                     {/*LongBar*/}
                     <div className="my-10">
                         <TitleCard title="Résumé" />
                         <div className="shadow-sm bg-gray-50 rounded-md w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-3 px-5 flex justify-between mb-10">
@@ -103,7 +112,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-
+                     {/*Charts*/}
                     <div className="my-10">
                         <TitleCard title="Rapports" />
                         <div className="w-full flex flex-row">
@@ -118,13 +127,15 @@ export default function Dashboard() {
                                     <Dotnut />
                                 </div>
                             </div>
+
                         </div>
                     </div>
+
                 </div>
 
 
-
-                <div className="h-screen bg-[#f9f6fb] w-full lg:w-1/3 p-10 border-l border-[#f5f0f0] lg:ml-3">
+                 {/*Right Section*/}
+                <div className="h-screen bg-[#f9f6fb] w-full lg:w-1/3 p-10 border-l border-[#f5f0f0] lg:ml-3 overflow-x-auto">
                         <div className="my-5">
                             <div className="mb-8">
                                 <div className="flex justify-center items-center space-x-6">
@@ -167,9 +178,28 @@ export default function Dashboard() {
                                     <span className="text-xs font-normal leading-none text-purple-700">Shopping</span>
                                 </div>
                             </div>
-                            <div className="py-5 overflow-auto h-96">
+                            <div className="py-5 overflow-auto h-100">
                                 <Transactions />
                             </div>
+
+
+                            {/*<div className="my-4">
+                                <TitleCard title="Envoi rapide" />
+                                <form className="p-4 bg-white rounded-md" onSubmit={handleSubmit(onSubmit)}>
+                                    <div className="relative">
+                                        <Field
+                                            {...register("amount", {required: "Le champs est requis"})}
+                                            type="text"
+                                            name="amount"
+                                            error={errors?.amount?.message}
+                                            placeholder="Saisir le montant"
+                                        />
+                                        <Button type="submit" className=" absolute right-0 top-0 mt-4 mr-5">
+                                            <ArrowRightIcon className="h-8 w-8 fill-current text-gray-400" />
+                                        </Button>
+                                    </div>
+                                </form>
+                            </div>*/}
                         </div>
                 </div>
 
